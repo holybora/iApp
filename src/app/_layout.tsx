@@ -38,6 +38,16 @@ SplashScreen.setOptions({
 
 export default function RootLayout() {
   const { success, error } = useMigrations(db, migrations);
+  // Fallback: on first launch the tab layout (which owns the usual
+  // splash-hide timer) redirects away before its timer fires, so the
+  // splash would never hide. RootLayout never unmounts, so hide it here
+  // once the app is ready to render. hideAsync is idempotent.
+  React.useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => SplashScreen.hideAsync(), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
   if (error) {
     throw error; // surfaces in the route ErrorBoundary
   }
