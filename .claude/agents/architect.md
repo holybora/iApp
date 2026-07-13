@@ -21,3 +21,6 @@ Rules:
 - SDD: no implementation guidance without a spec section backing it.
 - Minimize cost: free-tier services only, no new paid dependencies.
 - YAGNI: reject scope not in the design doc's MVP list.
+
+Process: docs/specs/003-agent-process.md. Record task status, verdicts,
+and deviations in docs/process/ledger.md (committed — not .superpowers/).
