@@ -11,17 +11,29 @@ cmd=$(printf '%s' "$input" | python3 -c \
 
 block() { echo "guard-main: BLOCKED — $1. Merging/pushing main is a human action (docs/specs/003-agent-process.md)." >&2; exit 2; }
 
-if printf '%s' "$cmd" | grep -qE 'git[^|;&]*\bpush\b[^|;&]*\bmain\b'; then
+# GIT anchors the verb as git's actual SUBCOMMAND (allowing -C/-c/--flag
+# options in between). A loose match like git[^|;&]*push would also hit
+# quoted text, e.g. git commit -m "docs: fix push main" — a real false
+# positive found while dogfooding.
+GIT='\bgit(\s+-C\s+\S+|\s+-c\s+\S+|\s+--[A-Za-z-]+(=\S+)?)*\s+'
+
+if printf '%s' "$cmd" | grep -qE "${GIT}push\b[^|;&]*\bmain\b"; then
   block "push targeting main"
 fi
-if printf '%s' "$cmd" | grep -qE 'git[^|;&]*\bpush\b[^|;&]*(--force|--force-with-lease|-f)\b'; then
+if printf '%s' "$cmd" | grep -qE "${GIT}push\b[^|;&]*(--force(-with-lease)?|-f)\b"; then
   block "force push"
 fi
-if printf '%s' "$cmd" | grep -qE 'git[^|;&]*\bmerge\b'; then
+# merge(\s|$) not \bmerge\b: `git merge-base` is read-only and must pass
+if printf '%s' "$cmd" | grep -qE "${GIT}merge(\s|\$)"; then
   block "git merge"
 fi
-if printf '%s' "$cmd" | grep -qE 'git[^|;&]*\bcommit\b'; then
-  branch=$(git -C "${CLAUDE_PROJECT_DIR:-.}" branch --show-current 2>/dev/null || echo '')
-  if [ "$branch" = "main" ]; then block "commit while on main"; fi
+current_branch() { git -C "${CLAUDE_PROJECT_DIR:-.}" branch --show-current 2>/dev/null || echo ''; }
+if printf '%s' "$cmd" | grep -qE "${GIT}commit\b"; then
+  if [ "$(current_branch)" = "main" ]; then block "commit while on main"; fi
+fi
+# a bare `git push` while checked out on main pushes main without the
+# literal word appearing in the command — catch it by branch state
+if printf '%s' "$cmd" | grep -qE "${GIT}push\b"; then
+  if [ "$(current_branch)" = "main" ]; then block "push while on main — check out a feature branch"; fi
 fi
 exit 0
