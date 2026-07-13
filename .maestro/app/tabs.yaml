@@ -19,6 +19,8 @@ env:
 - tapOn:
     id: stats-tab
 - assertVisible: Stats
+- assertVisible:
+    id: settings-tab
 - tapOn:
     id: settings-tab
 - assertVisible: Settings
