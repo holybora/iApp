@@ -5,7 +5,7 @@ tags:
 - runFlow:
     when:
       visible: Obytes Starter
-    file: onboarding.yaml
+    file: ../auth/onboarding.yaml
 - runFlow:
     when:
       visible: Sign In
