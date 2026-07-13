@@ -158,5 +158,10 @@
   },
   "osMetadata": {
     "initVersion": "9.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3"
+    ]
   }
 }
