@@ -170,9 +170,10 @@ now against placeholder screens is waste.
 **CI policy:** test / type-check / lint on every PR stays as is (healthy).
 E2E stays label-gated — an emulator boot per PR is too slow/flaky to require —
 but the label now triggers a workflow that actually works. Add a
-`coverageThreshold` to `jest.config.js` set modestly from current actual
-coverage (a floor against regression, not an aspiration); CI then fails on
-coverage drops instead of just commenting.
+`coverageThreshold` to `jest.config.js`: measure global line/branch coverage
+at implementation time and set each threshold to that value rounded down to
+the nearest 5 points (a floor against regression, not an aspiration); CI then
+fails on coverage drops instead of just commenting.
 
 **Env:** add committed `.env.development.example` documenting the
 `EXPO_PUBLIC_*` vars from `env.ts`, so strict-validation `prebuild` failures
