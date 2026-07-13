@@ -44,7 +44,7 @@
     "test:watch": "pnpm run test --watch",
     "test:hooks": "bash .claude/hooks/test-hooks.sh",
     "install-maestro": "curl -Ls 'https://get.maestro.mobile.dev' | bash",
-    "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development"
+    "e2e-test": "maestro test .maestro/ -e APP_ID=com.iapp.development"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
