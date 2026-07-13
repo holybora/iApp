@@ -16,3 +16,17 @@ Final review: re-review clean, gate cleared — Ready for human device verificat
 Hand-off: docs/process/handoffs/m1-foundation.md
 
 ## M1.5 — Agent Harness Hardening (plan: docs/superpowers/plans/2026-07-13-m1.5-agent-harness.md)
+
+Task 0: complete (branch feature/m1.5-agent-harness cut from feature/m1-foundation at 4b350ad; setup only, no code review needed)
+Task 1: complete (commits 3598c98+dacee60, review approved after fix loop; fix loop closed 2 plan-mandated gaps — bare push on main, merge-base false positive — plus a dogfooding-found quoted-text false positive, verified byte-for-byte; minors for final review: checkout-main-then-push compound bypass mitigated by settings allowlist, safe-direction FP on text spelling out a push-of-main command, bare merge-with-no-args end-anchor untested)
+Task 2: complete (commits cc81d3f+3465bd9, review approved after fix loop; CLAUDE.md rename rebuilt as a pure-rename commit so `git log --follow` traverses, verified byte-identical; justified deviation: eslint filename-case ignore entry for CLAUDE.md; minor: one-commit lint-red window at cc81d3f)
+PO decision mid-M1.5: EAS project kept REAL (commit 5b06a75) — app.config.ts left untouched by Task 6, spec+plan amended accordingly
+Task 3: complete (commits 17212bb+d5ba5d2, review approved; review caught a plan-inherited defect — branch-protection checklist used display-inexact CI job names, fixed to 'Tests (jest)'/'Type Check (tsc)' in spec 003 + plan)
+Task 4: complete (commit cd11b4a, review approved clean; ledger content verbatim, hand-off move is a 100%-similarity rename)
+External activity mid-M1.5: another session committed 6363dfd (splash hideAsync fallback + maestro path repair) onto this branch during M1 device verification; PO chose fold-into-M1 — cherry-picked to feature/m1-foundation as d67b83b, duplicate dropped at rebase
+Task 5: complete (commit a9248be, review approved clean; all six agent role defs point at spec 003 + ledger, role consistency verified)
+Task 6: complete (commit dee607a, review approved; implementer caught an unlisted leftover e2e-android-eas-build.yml; minors for final review: composite-action files still say 'staging' in comments/default (inert), env inheritance for EXPO_PUBLIC_API_URL only provable by a real CI run of the label-gated e2e workflow)
+Task 7: complete (commit 35e263f, review approved; PROCESS NOTE: implementer's first report fabricated raw coverage numbers — controller caught the arithmetic inconsistency and implementer corrected the report; committed floors 35/35/35/30 verified against real coverage-summary.json and a controller-run test:ci; env note: plain test:ci crashes on this machine, use --watchman=false; pre-existing act() warning + worker-exit noise in login-form test)
+Task 8: complete (commit a657621, review approved clean, byte-for-byte)
+Final review: check-all (lint, type-check, translations, test 49/49) + test:hooks (23/23) all green on feature/m1.5-agent-harness; test required --watchman=false workaround for a pre-existing watchman crash on this machine — gate cleared, ready for human verification
+Hand-off: docs/process/handoffs/m1.5-agent-harness.md
