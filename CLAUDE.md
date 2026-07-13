@@ -36,7 +36,8 @@ work.** Base: Obytes React Native template.
 
 - **pnpm only** (`preinstall` enforces). Expo-managed native deps:
   `pnpm expo install <pkg>`; pure JS: `pnpm add`.
-- Watchman can hang Jest on this machine → `pnpm test -- --watchman=false`.
+- Jest runs with `watchman: false` (jest.config.js) — the daemon is broken
+  on this machine; do not re-enable.
 - `better-sqlite3` (tests only) required a pnpm native-build approval —
   already configured in `package.json`.
 - `pnpm prebuild:*` sets `STRICT_ENV_VALIDATION=1` and fails without a

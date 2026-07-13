@@ -39,6 +39,9 @@ jobs:
 
       - name: ⏱️ EAS Build
         uses: ./.github/actions/eas-build
+        env:
+          # placeholder; strict prebuild validation requires a URL (no API before M4)
+          EXPO_PUBLIC_API_URL: http://localhost:3000
         with:
           APP_ENV: preview
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

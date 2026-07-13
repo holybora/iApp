@@ -22,8 +22,8 @@ check() { # $1 expected exit, $2 actual exit, $3 label
 }
 
 # temp repos make branch-dependent cases deterministic on any checkout
-tmp_main=$(mktemp -d); git -C "$tmp_main" init -q -b main; git -C "$tmp_main" commit --allow-empty -qm init
-tmp_feat=$(mktemp -d); git -C "$tmp_feat" init -q -b feature/x; git -C "$tmp_feat" commit --allow-empty -qm init
+tmp_main=$(mktemp -d); git -C "$tmp_main" init -q -b main; git -c user.name=t -c user.email=t@t -C "$tmp_main" commit --allow-empty -qm init
+tmp_feat=$(mktemp -d); git -C "$tmp_feat" init -q -b feature/x; git -c user.name=t -c user.email=t@t -C "$tmp_feat" commit --allow-empty -qm init
 run_bash_hook_in() { # $1 = CLAUDE_PROJECT_DIR to simulate, $2 = command
   printf '{"tool_name":"Bash","tool_input":{"command":"%s"}}' "$2" \
     | CLAUDE_PROJECT_DIR="$1" bash "$MAIN_HOOK" >/dev/null 2>&1

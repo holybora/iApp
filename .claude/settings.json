@@ -29,6 +29,7 @@
       "Bash(git push --force*)",
       "Bash(git push -f*)",
       "Bash(git merge *)",
+      "Bash(gh pr merge*)",
       "Bash(rm -rf *)",
       "Edit(android/**)",
       "Edit(ios/**)",

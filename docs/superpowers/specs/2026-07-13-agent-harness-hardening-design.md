@@ -40,9 +40,12 @@ harness around it was never migrated off the Obytes template:
   `main` if M1 has been merged by then).
 - **EAS identity:** ~~no Expo account yet — placeholder everything~~
   **Superseded during M1.5 execution:** the PO created a real EAS project
-  (commit `5b06a75` sets the project ID) and confirmed keeping the committed
-  owner/slug/projectId in `app.config.ts` untouched. Only the `com.obytes.*`
-  app IDs in E2E/CI still get fixed to `com.iapp.*`.
+  (commit `5b06a75` sets the project ID) and confirmed keeping
+  `app.config.ts` untouched. NOTE: 5b06a75 set only
+  the projectId — `owner: 'obytes'` and `slug: 'obytesapp'` are template
+  leftovers that MUST be reconciled with the real Expo account at M5.
+  Only the `com.obytes.*` app IDs in E2E/CI still get fixed to
+  `com.iapp.*`.
 - **Durable state:** committed repo ledger (not GitHub Issues).
 - **Human gate:** push every feature branch + PR per feature with
   acceptance-criteria checklist; CI on every PR; PO merges on GitHub.
@@ -200,7 +203,8 @@ doing, unrelated to agent autonomy; separate later chore.
   merge/push/edit commands, asserting block vs allow. Wired as
   `pnpm test:hooks` into CI's lint job (keeps Jest pure). Not part of
   `check-all`.
-- **Maestro smoke flow:** verified once on a local emulator before merge.
+- **Maestro smoke flow:** optional before merge (flows were exercised
+  during M1 device verification); mandatory at the M2 gate.
 - **Package acceptance — a fresh Claude session in a clean checkout can:**
   1. State the product and process from `CLAUDE.md` alone.
   2. Run `pnpm check-all` and commit on a feature branch with zero permission

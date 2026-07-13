@@ -21,7 +21,8 @@ Single living definition of how autonomous agents build this app. Replaces
    per `CLAUDE.md`, `pnpm check-all` green before hand-over.
 3. Reviewer reads the spec's acceptance criteria, then the diff
    (`git diff <base>...HEAD`), runs the gates, and issues APPROVE or
-   REJECT with file:line findings in the ledger. Rejected → back to the
+   REJECT with file:line findings in its report; the dispatching
+   controller records the verdict in the ledger. Rejected → back to the
    developer; disputes → Architect (spec updates first).
 4. Release/QA pushes the branch, opens the PR (template = hand-off
    format), attaches the hand-off note, and marks it
