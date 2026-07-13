@@ -10,6 +10,7 @@ module.exports = {
     '!**/jest-setup.ts',
     '!**/docs/**',
     '!**/cli/**',
+    '!src/lib/db/migrations/**',
   ],
   moduleFileExtensions: ['js', 'ts', 'tsx'],
   transformIgnorePatterns: [
