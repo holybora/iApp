@@ -17,6 +17,7 @@ services only.
 |------|---------|-----------|
 | 001 | Data model | M1 |
 | 002 | Design system | M1 |
+| 003 | Agent process | M1.5 |
 | 010 | Auth (Google + anonymous) | M4 |
 | 011 | Goals CRUD | M2 |
 | 012 | Routine scheduling | M2 |
