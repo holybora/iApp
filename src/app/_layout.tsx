@@ -1,6 +1,7 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 import { ThemeProvider } from '@react-navigation/native';
+import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
@@ -12,6 +13,8 @@ import { useThemeConfig } from '@/components/ui/use-theme-config';
 import { hydrateAuth } from '@/features/auth/use-auth-store';
 
 import { APIProvider } from '@/lib/api';
+import { db } from '@/lib/db';
+import migrations from '@/lib/db/migrations/migrations';
 import { loadSelectedTheme } from '@/lib/hooks/use-selected-theme';
 // Import  global CSS file
 import '../global.css';
@@ -34,6 +37,13 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  const { success, error } = useMigrations(db, migrations);
+  if (error) {
+    throw error; // surfaces in the route ErrorBoundary
+  }
+  if (!success) {
+    return null; // splash screen still covers the app
+  }
   return (
     <Providers>
       <Stack>
