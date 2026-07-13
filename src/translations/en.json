@@ -29,5 +29,13 @@
     "version": "Version",
     "website": "Website"
   },
+  "tabs": {
+    "goals": "Goals",
+    "goals_empty": "No goals yet",
+    "stats": "Stats",
+    "stats_empty": "No stats yet",
+    "today": "Today",
+    "today_empty": "Nothing scheduled today"
+  },
   "welcome": "Welcome to obytes app site"
 }

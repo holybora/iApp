@@ -29,5 +29,13 @@
     "version": "إصدار",
     "website": "موقع الكتروني"
   },
+  "tabs": {
+    "goals": "الأهداف",
+    "goals_empty": "لا توجد أهداف بعد",
+    "stats": "الإحصائيات",
+    "stats_empty": "لا توجد إحصائيات بعد",
+    "today": "اليوم",
+    "today_empty": "لا يوجد شيء مجدول اليوم"
+  },
   "welcome": "test arabic"
 }
