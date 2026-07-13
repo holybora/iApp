@@ -47,3 +47,6 @@ jobs:
       - name: 🏃‍♂️ Run ESLint PR
         if: github.event_name != 'pull_request'
         run: pnpm run lint
+
+      - name: 🛡️ Hook guard tests
+        run: pnpm test:hooks
