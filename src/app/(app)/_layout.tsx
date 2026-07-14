@@ -1,15 +1,16 @@
-import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
+import { Redirect, SplashScreen, Tabs } from 'expo-router';
 import * as React from 'react';
 import { useCallback, useEffect } from 'react';
 
-import { Pressable, Text } from '@/components/ui';
 import {
-  Feed as FeedIcon,
+  Goals as GoalsIcon,
+  Home as HomeIcon,
   Settings as SettingsIcon,
-  Style as StyleIcon,
+  Stats as StatsIcon,
 } from '@/components/ui/icons';
 import { useAuthStore as useAuth } from '@/features/auth/use-auth-store';
 import { useIsFirstTime } from '@/lib/hooks/use-is-first-time';
+import { translate } from '@/lib/i18n';
 
 export default function TabLayout() {
   const status = useAuth.use.status();
@@ -37,41 +38,39 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Feed',
-          tabBarIcon: ({ color }) => <FeedIcon color={color} />,
-          headerRight: () => <CreateNewPostLink />,
-          tabBarButtonTestID: 'feed-tab',
+          title: translate('tabs.today'),
+          headerShown: false,
+          tabBarIcon: ({ color }) => <HomeIcon color={color} />,
+          tabBarButtonTestID: 'today-tab',
         }}
       />
-
       <Tabs.Screen
-        name="style"
+        name="goals"
         options={{
-          title: 'Style',
+          title: translate('tabs.goals'),
           headerShown: false,
-          tabBarIcon: ({ color }) => <StyleIcon color={color} />,
-          tabBarButtonTestID: 'style-tab',
+          tabBarIcon: ({ color }) => <GoalsIcon color={color} />,
+          tabBarButtonTestID: 'goals-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="stats"
+        options={{
+          title: translate('tabs.stats'),
+          headerShown: false,
+          tabBarIcon: ({ color }) => <StatsIcon color={color} />,
+          tabBarButtonTestID: 'stats-tab',
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Settings',
+          title: translate('settings.title'),
           headerShown: false,
           tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
           tabBarButtonTestID: 'settings-tab',
         }}
       />
     </Tabs>
-  );
-}
-
-function CreateNewPostLink() {
-  return (
-    <Link href="/feed/add-post" asChild>
-      <Pressable>
-        <Text className="px-3 text-primary-300">Create</Text>
-      </Pressable>
-    </Link>
   );
 }

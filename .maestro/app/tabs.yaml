@@ -6,12 +6,21 @@ env:
 ---
 - launchApp
 - runFlow: ../utils/onboarding-and-login.yaml
-- assertVisible: Feed
+- assertVisible: Today
 - assertVisible:
-    id: style-tab
+    id: today-tab
+- assertVisible:
+    id: goals-tab
 - tapOn:
-    id: style-tab
-- assertVisible: Typography
+    id: goals-tab
+- assertVisible: Goals
+- assertVisible:
+    id: stats-tab
+- tapOn:
+    id: stats-tab
+- assertVisible: Stats
+- assertVisible:
+    id: settings-tab
 - tapOn:
     id: settings-tab
 - assertVisible: Settings

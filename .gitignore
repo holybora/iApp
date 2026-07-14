@@ -26,3 +26,5 @@ yarn-error.log
 
 expo-env.d.ts
 # @end expo-cli
+# SDD session scratch (progress ledger, briefs, reports)
+.superpowers/

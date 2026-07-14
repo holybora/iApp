@@ -1,6 +1,7 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 import { ThemeProvider } from '@react-navigation/native';
+import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
@@ -12,6 +13,8 @@ import { useThemeConfig } from '@/components/ui/use-theme-config';
 import { hydrateAuth } from '@/features/auth/use-auth-store';
 
 import { APIProvider } from '@/lib/api';
+import { db } from '@/lib/db';
+import migrations from '@/lib/db/migrations/migrations';
 import { loadSelectedTheme } from '@/lib/hooks/use-selected-theme';
 // Import  global CSS file
 import '../global.css';
@@ -34,6 +37,23 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  const { success, error } = useMigrations(db, migrations);
+  // Fallback: on first launch the tab layout (which owns the usual
+  // splash-hide timer) redirects away before its timer fires, so the
+  // splash would never hide. RootLayout never unmounts, so hide it here
+  // once the app is ready to render. hideAsync is idempotent.
+  React.useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => SplashScreen.hideAsync(), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
+  if (error) {
+    throw error; // surfaces in the route ErrorBoundary
+  }
+  if (!success) {
+    return null; // splash screen still covers the app
+  }
   return (
     <Providers>
       <Stack>
