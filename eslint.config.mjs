@@ -61,6 +61,7 @@ export default antfu(
           ignore: [
             '/android',
             '/ios',
+            'CLAUDE.md',
             'README.md',
             'README-project.md',
             'ISSUE_TEMPLATE.md',

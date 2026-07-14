@@ -177,6 +177,9 @@ server/
 
 ## 6. Autonomous Agent Team
 
+> **Living version:** §6–8 are superseded by `docs/specs/003-agent-process.md`
+> (M1.5); that spec wins on conflict, including plan/ledger file locations.
+
 Six agent roles + the user as Product Owner.
 
 | # | Role | Responsibilities | When |

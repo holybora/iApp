@@ -38,8 +38,14 @@ harness around it was never migrated off the Obytes template:
 - **Sequencing:** start only after M1 Task 6/7 are committed and handed off;
   branch `feature/m1.5-agent-harness` off `feature/m1-foundation` (or off
   `main` if M1 has been merged by then).
-- **EAS identity:** no Expo account yet — fix app IDs now, placeholder the
-  EAS owner/slug/projectId, defer `eas init` to M5 as a documented human step.
+- **EAS identity:** ~~no Expo account yet — placeholder everything~~
+  **Superseded during M1.5 execution:** the PO created a real EAS project
+  (commit `5b06a75` sets the project ID) and confirmed keeping
+  `app.config.ts` untouched. NOTE: 5b06a75 set only
+  the projectId — `owner: 'obytes'` and `slug: 'obytesapp'` are template
+  leftovers that MUST be reconciled with the real Expo account at M5.
+  Only the `com.obytes.*` app IDs in E2E/CI still get fixed to
+  `com.iapp.*`.
 - **Durable state:** committed repo ledger (not GitHub Issues).
 - **Human gate:** push every feature branch + PR per feature with
   acceptance-criteria checklist; CI on every PR; PO merges on GitHub.
@@ -153,8 +159,8 @@ Targeted edits to the six files in `.claude/agents/` — no rewrites:
 
 **App identity — one consistent set of values:**
 
-- `app.config.ts`: drop `owner: 'obytes'`, `slug` → `iapp`, blank the
-  template `EAS_PROJECT_ID` with a comment that `eas init` at M5 fills it.
+- `app.config.ts`: LEAVE AS COMMITTED (decision superseded, see §2 — the
+  EAS project is real; owner/slug/projectId stay as the PO set them).
 - `package.json` `e2e-test`: `APP_ID=com.obytes.development` →
   `com.iapp.development`.
 - CI E2E workflows: `com.obytes.staging` → `com.iapp.development`;
@@ -197,7 +203,8 @@ doing, unrelated to agent autonomy; separate later chore.
   merge/push/edit commands, asserting block vs allow. Wired as
   `pnpm test:hooks` into CI's lint job (keeps Jest pure). Not part of
   `check-all`.
-- **Maestro smoke flow:** verified once on a local emulator before merge.
+- **Maestro smoke flow:** optional before merge (flows were exercised
+  during M1 device verification); mandatory at the M2 gate.
 - **Package acceptance — a fresh Claude session in a clean checkout can:**
   1. State the product and process from `CLAUDE.md` alone.
   2. Run `pnpm check-all` and commit on a feature branch with zero permission
@@ -206,7 +213,8 @@ doing, unrelated to agent autonomy; separate later chore.
 
 ## 6. Out of scope
 
-- Real EAS project creation (`eas init`) — M5, human step.
+- EAS build verification — the project now exists (see §2), but running
+  and validating EAS builds stays out of M1.5; first exercised at M5.
 - Product-feature Maestro flows — M2/M3 gates.
 - Dependabot / CodeQL / dependency scanning.
 - Skill-encoded dispatch pipeline (approach B) — may layer on later once the

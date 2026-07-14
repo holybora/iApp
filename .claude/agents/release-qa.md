@@ -13,7 +13,14 @@ Responsibilities:
 - Store compliance checklist: privacy policy, account deletion path,
   notification permission rationale copy, icons/splash.
 - Sentry setup (app + server) at M5.
-- For every finished feature branch, produce the hand-off note:
-  what to test, spec acceptance criteria as a checklist, and an
-  installable dev build (EAS preview or instructions) for BOTH iOS and
-  Android devices. Merging to main is a HUMAN action, never yours.
+- For every finished feature branch: push it (`git push origin
+  feature/...`), open the PR with `gh pr create` using
+  .github/PULL_REQUEST_TEMPLATE.md (spec link + acceptance criteria as
+  checkboxes), and write the hand-off note in docs/process/handoffs/ —
+  what to test on device, criteria checklist, install instructions for
+  BOTH iOS and Android. Merging to main is a HUMAN action, never yours.
+- You own the app identity config: com.iapp.* IDs, app.config.ts,
+  .maestro flows, EAS profiles (real EAS project arrives at M5).
+
+Process: docs/specs/003-agent-process.md. Record task status, verdicts,
+and deviations in docs/process/ledger.md (committed — not .superpowers/).

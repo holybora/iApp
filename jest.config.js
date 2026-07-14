@@ -1,5 +1,6 @@
 module.exports = {
   preset: 'jest-expo',
+  watchman: false,
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
   collectCoverageFrom: [
@@ -35,6 +36,16 @@ module.exports = {
     ],
   ],
   coverageDirectory: '<rootDir>/coverage/',
+  // Floor = measured coverage at M1.5, rounded down to nearest 5 (spec
+  // 2026-07-13-agent-harness-hardening §3.5). Raise as coverage grows.
+  coverageThreshold: {
+    global: {
+      lines: 35,
+      statements: 35,
+      branches: 35,
+      functions: 30,
+    },
+  },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },

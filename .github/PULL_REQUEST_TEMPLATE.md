@@ -1,23 +1,25 @@
-## What does this do?
+## Spec
 
-<!---
-_Describe what your changes **do**; did you add a $COOL_FEATURE? Write about it here._
--->
+<!-- Link the spec this implements, e.g. docs/specs/011-goals-crud.md -->
 
-## Why did you do this?
+## Acceptance criteria
 
-<!---
-_**Why** did you make these changes? This is your opportunity to provide the rationale that drove the design of your solution._
--->
+<!-- Copy each criterion from the spec's Acceptance criteria section -->
+- [ ]
+- [ ] `pnpm check-all` green (CI)
 
-## Who/what does this impact?
+## What to test on device (iOS + Android)
 
-<!---
-_Does your code affect something downstream? Are there side effects people should know about? Tag any developers that should be kept abreast of this change._
--->
+<!-- Numbered steps a human follows on real devices before merging -->
+1.
 
-## How did you test this?
+## Known limitations
 
-<!---
-_How did you test your change? Document it here._
--->
+<!-- Deliberate gaps, with the milestone that closes them -->
+
+## Review
+
+<!-- Reviewer verdict + ledger line reference (docs/process/ledger.md) -->
+
+> Merging is a human action after device verification
+> (docs/specs/003-agent-process.md).

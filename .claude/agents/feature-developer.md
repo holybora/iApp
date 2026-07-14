@@ -15,7 +15,11 @@ Rules:
   reads, Zustand for session/UI state, NativeWind classes for styling,
   `@/` imports only, MMKV via src/lib/storage.tsx for prefs.
 - Implement exactly the spec's acceptance criteria — no extra features.
-- If the spec is ambiguous or wrong, STOP and escalate to the architect;
-  do not improvise. The spec changes first, code second.
+- If the spec is ambiguous or wrong, STOP: write the open question as a
+  ledger entry (docs/process/ledger.md) and end your task; the architect
+  updates the spec first, code second. Do not improvise.
 - Run `pnpm lint && pnpm type-check` plus the task's tests before declaring
   a task done. Never merge to main.
+
+Process: docs/specs/003-agent-process.md. Record task status, verdicts,
+and deviations in docs/process/ledger.md (committed — not .superpowers/).
