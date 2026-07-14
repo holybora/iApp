@@ -45,6 +45,10 @@ work.** Base: Obytes React Native template.
   `start`/`test`/`lint`/`type-check` need no env file.
 - Verification gate for every task: `pnpm check-all`
   (lint + type-check + lint:translations + test).
+- Running `tsc` locally regenerates `uniwind-types.d.ts` in a format that
+  fails eslint. If lint fails only on that file: `pnpm lint:fix`, then
+  `git checkout -- uniwind-types.d.ts`. Never commit the regenerated form.
+  (CI is unaffected — its jobs are isolated.)
 - `src/translations/en.json` and `ar.json` must stay key-synchronized.
 
 ## Technology Stack
